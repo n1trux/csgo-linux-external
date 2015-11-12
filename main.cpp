@@ -120,7 +120,7 @@ int main() {
     cout << "Cached " << std::dec << netvar::GetAllClasses().size() << " networked classes" << endl;
 
     while (csgo.IsRunning()) {
-         hack::Glow(&csgo, &client, addressOfGlowPointer);
+        hack::Glow(&csgo, &client, addressOfGlowPointer);
 
         usleep(5000);
     }

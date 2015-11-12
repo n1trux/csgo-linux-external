@@ -63,6 +63,10 @@ void hack::Glow(remote::Handle* csgo, remote::MapModuleMemoryRegion* client, uns
                 // Radar Hack
                 Radar(csgo, client, g_glow[i].m_pEntity, &ent);
 
+                if(g_glow[i].m_bRenderWhenOccluded == 1) {
+                  continue;
+                }
+                
                 g_glow[i].m_bRenderWhenOccluded = 1;
                 g_glow[i].m_bRenderWhenUnoccluded = 0;
 
@@ -70,13 +74,13 @@ void hack::Glow(remote::Handle* csgo, remote::MapModuleMemoryRegion* client, uns
                     g_glow[i].m_flGlowRed = 1.0f;
                     g_glow[i].m_flGlowGreen = 0.0f;
                     g_glow[i].m_flGlowBlue = 0.0f;
-                    g_glow[i].m_flGlowAlpha = 0.8f;
+                    g_glow[i].m_flGlowAlpha = 0.6f;
 
                 } else if (ent.m_iTeamNum == 3) {
                     g_glow[i].m_flGlowRed = 0.0f;
                     g_glow[i].m_flGlowGreen = 0.0f;
                     g_glow[i].m_flGlowBlue = 1.0f;
-                    g_glow[i].m_flGlowAlpha = 0.8f;
+                    g_glow[i].m_flGlowAlpha = 0.6f;
                 }
             }
         }
