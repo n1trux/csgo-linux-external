@@ -73,6 +73,7 @@ int main() {
     void* foundGlowPointerCall = client.find(csgo,
                                              "\xE8\x00\x00\x00\x00\x8B\x78\x14\x6B\xD6\x38",
                                              "x????xxxxxx");
+
 //Old Sig Pre 11/10/15
 //\xE8\x00\x00\x00\x00\x8B\x78\x14\x6B\xD6\x34
 //x????xxxxxx
