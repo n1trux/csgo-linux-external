@@ -11,9 +11,6 @@ Compiled and tested on:
 ![hackin](http://i.imgur.com/fiKLjnQ.jpg)
 
 Credits:
-
-Original author: s0beit
-
-Original author credits: BoToX & buFFy
-
-Maintainer/Updater: laazyboy13 & community
+- Original author: s0beit
+- Original author credits: BoToX & buFFy
+- Maintainer/Updater: laazyboy13 & community
