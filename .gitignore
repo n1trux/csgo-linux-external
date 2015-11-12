@@ -1,0 +1,8 @@
+CMakeFiles/*
+.idea/*
+cmake_install.cmake
+*.txt
+*.log
+Makefile
+lolpls
+csgo_external
