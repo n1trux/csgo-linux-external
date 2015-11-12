@@ -3,6 +3,7 @@ CMakeFiles/*
 cmake_install.cmake
 *.txt
 !CMakeLists.txt
+!nologs-branch.md
 *.log
 Makefile
 lolpls

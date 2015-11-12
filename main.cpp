@@ -125,7 +125,7 @@ int main() {
         usleep(5000);
     }
 
-    cout << "Game ended." << endl;
+//    cout << "Game ended." << endl;
 
     return 0;
 }
