@@ -71,8 +71,8 @@ int main() {
     client.client_start = client.start;
 
     void* foundGlowPointerCall = client.find(csgo,
-                                             "\xE8\x00\x00\x00\x00\x8B\x78\x14\x6B\xD6\x38",
-                                             "x????xxxxxx");
+                                             "\xE8\x00\x00\x00\x00\x8B\x78\x14\x6B\xD6",
+                                             "x????xxxxx");
 
 //Old Sig Pre 11/10/15
 //\xE8\x00\x00\x00\x00\x8B\x78\x14\x6B\xD6\x34
@@ -80,6 +80,9 @@ int main() {
 //New Sig as of 11/10/15
 //\xE8\x00\x00\x00\x00\x8B\x78\x14\x6B\xD6\x38
 //x????xxxxxx
+//11/10/15 Sig reduction, we don't need the size
+//\xE8\x00\x00\x00\x00\x8B\x78\x14\x6B\xD6
+//x????xxxxx
 
     cout << "Glow Pointer Call Reference: " << std::hex << foundGlowPointerCall <<
     " | Offset: " << (unsigned long) foundGlowPointerCall - client.start << endl;
