@@ -6,7 +6,7 @@ void log::init() {
     char cwd[PATH_MAX];
 
     if(getcwd(cwd, PATH_MAX) == NULL) {
-        g_cwd = "/home/s0beit/";
+        g_cwd = "~";
     }
 
     g_cwd = cwd;
