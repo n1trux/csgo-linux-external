@@ -158,7 +158,7 @@ int main() {
 		if (shouldGlow)
 	        hack::Glow(&csgo, &client, addressOfGlowPointer);
 
-        usleep(5000);
+        usleep(1000);
     }
 
 //    cout << "Game ended." << endl;
