@@ -1,10 +1,14 @@
 #include <iostream>
+#include <X11/Xlib.h>
+#include <X11/Xutil.h>
 #include "log.hpp"
 #include "remote.hpp"
 #include "hack.hpp"
 #include "netvar.hpp"
 
 using namespace std;
+
+bool shouldGlow = true;
 
 // This isn't called or used because it's for debugging, use it if you want.
 void printAllClasses() {
@@ -29,6 +33,17 @@ int main() {
     log::init();
     log::put("Hack loaded...");
 
+	Display* dpy = XOpenDisplay(0);
+	Window root = DefaultRootWindow(dpy);
+	XEvent ev;
+
+	int keycode = XKeysymToKeycode(dpy, XK_X);
+	unsigned int modifiers = ControlMask | ShiftMask;
+
+	XGrabKey(dpy, keycode, modifiers, root, false,
+				GrabModeAsync, GrabModeAsync);
+	XSelectInput(dpy, root, KeyPressMask);
+	
     remote::Handle csgo;
 
     while (true) {
@@ -123,9 +138,27 @@ int main() {
     cout << "Cached " << std::dec << netvar::GetAllClasses().size() << " networked classes" << endl;
 
     while (csgo.IsRunning()) {
-        hack::Glow(&csgo, &client, addressOfGlowPointer);
+		while (XPending(dpy) > 0) {
+			XNextEvent(dpy, &ev);
+			switch (ev.type) {
+				case KeyPress:
+					cout << "Toggling glow..." << endl;
+					XUngrabKey(dpy, keycode, modifiers, root);
+					shouldGlow = !shouldGlow;
+					break;
+				default:
+					break;
+			}
 
-        usleep(5000);
+			XGrabKey(dpy, keycode, modifiers, root, false,
+						GrabModeAsync, GrabModeAsync);
+			XSelectInput(dpy, root, KeyPressMask);
+		}
+
+		if (shouldGlow)
+	        hack::Glow(&csgo, &client, addressOfGlowPointer);
+
+        usleep(1000);
     }
 
 //    cout << "Game ended." << endl;
