@@ -7,6 +7,7 @@ Compiled and tested on:
 - Xubuntu
 - Archlinux
 - Debian (Jessie)
+- ElementaryOS
 
 ![hackin](http://i.imgur.com/fiKLjnQ.jpg)
 
