@@ -13,9 +13,7 @@ Compiled and tested on:
 Credits:
 - Original author: s0beit
 - Original author credits: BoToX & buFFy
-- Maintainer/Updater: laazyboy13 & community
-
-#Pull Request #4 - don't make an issue if this is your problem. I don't give a shit if you cant solve a dependency issue.
+- Maintainer/Updater: gogobebe2 & community
 
 # Create Toggle Keybind
 
