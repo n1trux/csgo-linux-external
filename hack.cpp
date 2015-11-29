@@ -80,7 +80,7 @@ void hack::Glow(remote::Handle* csgo, remote::MapModuleMemoryRegion* client, uns
                     g_glow[i].m_flGlowRed = 0.0f;
                     g_glow[i].m_flGlowGreen = 0.0f;
                     g_glow[i].m_flGlowBlue = 1.0f;
-                    g_glow[i].m_flGlowAlpha = 0.7f;
+                    g_glow[i].m_flGlowAlpha = 0.55f;
                 }
             }
         }
