@@ -14,7 +14,7 @@ Compiled and tested on:
 Credits:
 - Original author: s0beit
 - Original author credits: BoToX & buFFy
-- Maintainer/Updater: gogobebe2 & community
+- Maintainer/Updater: gogobebe2, laazyboy13 & community
 
 # Create Toggle Keybind
 
