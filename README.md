@@ -8,6 +8,7 @@ Compiled and tested on:
 - Archlinux
 - Debian (Jessie)
 - ElementaryOS
+- ApricityOS
 
 ![hackin](http://i.imgur.com/fiKLjnQ.jpg)
 
