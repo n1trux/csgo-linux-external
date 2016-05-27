@@ -47,7 +47,7 @@ int main() {
     remote::Handle csgo;
 
     while (true) {
-        if (remote::FindProcessByName("csgo_linux", &csgo)) {
+        if (remote::FindProcessByName("csgo_linux64", &csgo)) {
             break;
         }
 
