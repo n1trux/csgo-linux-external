@@ -76,15 +76,15 @@ namespace hack {
 
     struct Entity
     {
-        unsigned char unk0[0xDD];   //0000
-        unsigned char m_isDormant;  //00DD
-        unsigned char unk01[0x6];   //00DE
-        int           m_iTeamNum;   //00E4
-        int           unk1;         //00E8
-        int           unk2;         //00EC
-        int           m_iHealth;    //00F0
-        unsigned char unk3[0x15B];  //00F4
-        int           m_lifeState;  //024F
+        unsigned char unk0[0x11D];
+        unsigned char m_isDormant;
+        unsigned char unk01[0x6];
+        int           m_iTeamNum;
+        int           unk1;
+        int           unk2;
+        int           m_iHealth;
+        unsigned char unk3[0x15B];
+        int           m_lifeState;
     };
 
     struct Color {
