@@ -1,25 +1,10 @@
 #include "hack.hpp"
-#include "netvar.hpp"
 
 struct iovec g_remote[1024], g_local[1024];
 struct hack::GlowObjectDefinition_t g_glow[1024];
 
 int cachedSpottedAddress = -1;
 int count = 0;
-
-void Radar(remote::Handle* csgo, remote::MapModuleMemoryRegion* client, void* ent, hack::Entity* entity) {
-    if (cachedSpottedAddress == -1) {
-        cachedSpottedAddress = netvar::GetOffset("CBaseEntity", "m_bSpotted");
-    }
-
-    // give up :(
-    if (cachedSpottedAddress == -1)
-        return;
-
-    unsigned char spotted = 1;
-
-    csgo->Write((void*) ((unsigned long) ent + cachedSpottedAddress), &spotted, sizeof(unsigned char));
-}
 
 void hack::Glow(remote::Handle* csgo, remote::MapModuleMemoryRegion* client, unsigned long glowAddress) {
     if (!csgo || !client)
@@ -59,10 +44,7 @@ void hack::Glow(remote::Handle* csgo, remote::MapModuleMemoryRegion* client, uns
                     g_glow[i].m_bRenderWhenUnoccluded = 0;
                     continue;
                 }
-
-                // Radar Hack
-                Radar(csgo, client, g_glow[i].m_pEntity, &ent);
-
+                
                 if(g_glow[i].m_bRenderWhenOccluded == 1) {
                   continue;
                 }
