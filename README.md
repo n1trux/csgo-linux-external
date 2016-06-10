@@ -19,6 +19,7 @@ Credits:
 
 # Install
 `cd linux-csgo-external-master`
+
 `cmake .`
 
 # Create Toggle Keybind
