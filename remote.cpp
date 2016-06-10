@@ -116,7 +116,7 @@ namespace remote {
     unsigned long Handle::GetCallAddress(void* address) {
         unsigned long code = 0;
 
-        if(Read((char*) address + 1, &code, sizeof(unsigned long))) {
+        if(Read((char*) address + 1, &code, sizeof(unsigned int))) {
             return code + (unsigned long) address + 5;
         }
 
