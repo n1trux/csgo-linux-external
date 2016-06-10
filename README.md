@@ -17,6 +17,10 @@ Credits:
 - Original author credits: BoToX & buFFy
 - Maintainer/Updater: gogobebe2, laazyboy13 & community
 
+# Install
+`cd linux-csgo-external-master`
+`cmake .`
+
 # Create Toggle Keybind
 
 ## Synopsis
