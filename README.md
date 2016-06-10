@@ -22,6 +22,8 @@ Credits:
 
 `cmake .`
 
+`make`
+
 # Create Toggle Keybind
 
 ## Synopsis
