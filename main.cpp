@@ -4,23 +4,10 @@
 #include "log.hpp"
 #include "remote.hpp"
 #include "hack.hpp"
-#include "netvar.hpp"
 
 using namespace std;
 
 bool shouldGlow = true;
-
-// This isn't called or used because it's for debugging, use it if you want.
-void printAllClasses() {
-    for (size_t i = 0; i < netvar::GetAllClasses().size(); i++) {
-        cout << netvar::GetAllClasses()[i].name << endl;
-
-        for (size_t p = 0; p < netvar::GetAllClasses()[i].props.size(); p++) {
-            cout << "\t" << netvar::GetAllClasses()[i].props[p].name << " = " << std::hex <<
-            netvar::GetAllClasses()[i].props[p].offset << endl;
-        }
-    }
-}
 
 int main() {
     if (getuid() != 0) {
@@ -85,10 +72,8 @@ int main() {
     cout << "Found client_client.so [" << std::hex << client.start << "]" << endl;
     client.client_start = client.start;
 
-    void* foundGlowPointerCall = client.find(csgo,
-                                             "\xE8\x00\x00\x00\x00\x8B\x78\x14\x6B\xD6",
-                                             "x????xxxxx");
-
+// Old sig x86 "\xE8\x00\x00\x00\x00\x8B\x78\x14\x6B\xD6"
+//                                             "x????xxxxx"
 //Old Sig Pre 11/10/15
 //\xE8\x00\x00\x00\x00\x8B\x78\x14\x6B\xD6\x34
 //x????xxxxxx
@@ -99,43 +84,30 @@ int main() {
 //\xE8\x00\x00\x00\x00\x8B\x78\x14\x6B\xD6
 //x????xxxxx
 
+ void* foundGlowPointerCall = client.find(csgo,
+                                             "\xE8\x00\x00\x00\x00\x48\x8b\x10\x48\xc1\xe3\x06\x44",
+                                             "x????xxxxxxxx");
+
     cout << "Glow Pointer Call Reference: " << std::hex << foundGlowPointerCall <<
     " | Offset: " << (unsigned long) foundGlowPointerCall - client.start << endl;
-
-    if (!foundGlowPointerCall) {
-        cout << "Unable to find glow pointer call reference" << endl;
-        return 0;
-    }
-
+    
     unsigned long call = csgo.GetCallAddress(foundGlowPointerCall);
-
-    if (!call) {
-        cout << "Unable to read glow pointer call reference address" << endl;
-        return 0;
-    }
 
     cout << "Glow function address: " << std::hex << call << endl;
     cout << "Glow function address offset: " << std::hex << call - client.start << endl;
 
-    unsigned long addressOfGlowPointer = call;
+    unsigned int addressOfGlowPointerOffset;
 
-    if (!csgo.Read((void*) (call + 0x11), &addressOfGlowPointer, sizeof(unsigned long))) {
+    if (!csgo.Read((void*) (call + 0x10), &addressOfGlowPointerOffset, sizeof(unsigned int))) {
         cout << "Unable to read address of glow pointer" << endl;
         return 0;
     }
-
-    cout << "Glow Array: " << std::hex << addressOfGlowPointer << endl << endl;
-
-    while (!netvar::Cache(csgo, client)) {
-        if (!csgo.IsRunning()) {
-            cout << "Exited game before netvars could be cached, terminating" << endl;
-            return 0;
-        }
-
-        usleep(5000);
-    }
-
-    cout << "Cached " << std::dec << netvar::GetAllClasses().size() << " networked classes" << endl;
+    
+    cout << "Glow Array offset: " << std::hex << addressOfGlowPointerOffset << endl << endl;
+    
+    unsigned long addressOfGlowPointer = (call + 0x10) + addressOfGlowPointerOffset + 0x4  ;
+    
+    cout << "Glow Array pointer " << std::hex << addressOfGlowPointer << endl << endl;
 
     while (csgo.IsRunning()) {
 		while (XPending(dpy) > 0) {
