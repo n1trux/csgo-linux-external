@@ -1,4 +1,4 @@
-linux-csgo-external
+linux-csgo-external USE AT OWN RISK !!!
 ===================
 
 Linux x86 cheat for x86 and x64 linux systems
